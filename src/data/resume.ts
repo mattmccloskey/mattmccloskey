@@ -1,4 +1,4 @@
-// Résumé content — mirrors Matt-McCloskey-Resume.pdf.
+// Resume content — mirrors Matt-McCloskey-Resume.pdf.
 export const summary =
   'Product development & design leader with 20+ years driving digital products from concept to launch. Expert in UX design, full-stack development, rapid prototyping, and end-to-end strategy. VP-level experience delivering high-impact solutions for defense, healthcare, and critical infrastructure. Founded multiple SaaS products and uses self-hosted AI agentic systems to accelerate research, development, and delivery.';
 
