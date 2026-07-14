@@ -1,0 +1,370 @@
+---
+import Base from '../layouts/Base.astro';
+import PortfolioProject from '../components/PortfolioProject.astro';
+import type { PortfolioImage } from '../components/PortfolioProject.astro';
+import { downloads } from '../data/site';
+
+// --- Portfolio imagery (pre-optimized WebP exported from the 2026 PDF) ---
+import shrinknotesApp from '../assets/portfolio/shrinknotes-app.webp';
+import sullyEhr from '../assets/portfolio/sully-ehr.webp';
+import proxiExploration from '../assets/portfolio/proxi-exploration.webp';
+import proxiInsights from '../assets/portfolio/proxi-insights.webp';
+import proxiExecution from '../assets/portfolio/proxi-execution.webp';
+import peerloopScreens from '../assets/portfolio/peerloop-screens.webp';
+import ladybirdSite from '../assets/portfolio/ladybird-site.webp';
+import electricMapping from '../assets/portfolio/electric-mapping.webp';
+import electricWireframes from '../assets/portfolio/electric-wireframes.webp';
+import ownpropBrandguide from '../assets/portfolio/ownprop-brandguide.webp';
+import ownpropSymbol from '../assets/portfolio/ownprop-symbol.webp';
+import ownpropSymbolMeaning from '../assets/portfolio/ownprop-symbol-meaning.webp';
+import ownpropLogos from '../assets/portfolio/ownprop-logos.webp';
+import bidgelyMarketing from '../assets/portfolio/bidgely-marketing.webp';
+import ownpropTokenizing from '../assets/portfolio/ownprop-tokenizing.webp';
+import ownpropScreens from '../assets/portfolio/ownprop-screens.webp';
+import investableInsights from '../assets/portfolio/investable-insights.webp';
+import propertyGoals from '../assets/portfolio/property-goals.webp';
+import payupCards from '../assets/portfolio/payup-cards.webp';
+import payupTrack from '../assets/portfolio/payup-track.webp';
+import rexWeb from '../assets/portfolio/rex-web.webp';
+import sovereignLandscape from '../assets/portfolio/sovereign-landscape.webp';
+import sovereignBranding from '../assets/portfolio/sovereign-branding.webp';
+import sovereignGiddyup from '../assets/portfolio/sovereign-giddyup.webp';
+import sovereignSocial1 from '../assets/portfolio/sovereign-social-1.webp';
+import sovereignSocial2 from '../assets/portfolio/sovereign-social-2.webp';
+import sovereignShopify from '../assets/portfolio/sovereign-shopify.webp';
+
+interface ProjectEntry {
+  name: string;
+  descriptor: string;
+  role: string;
+  brief: string;
+  accent: string;
+  ink: string;
+  theme: 'light' | 'dark';
+  images: PortfolioImage[];
+}
+
+const projects: ProjectEntry[] = [
+  {
+    name: 'ShrinkNotes',
+    descriptor: 'Truly simple, truly private — encrypted psychotherapy practice software.',
+    role: 'Product owner, designer, and engineer',
+    brief:
+      'Practice-management software launched as a SaaS product, designed and built end-to-end. Branding, UI/UX, and full-stack development with React + Node.js.',
+    accent: '#7ea339',
+    ink: '#1f2a10',
+    theme: 'light',
+    images: [
+      { src: shrinknotesApp, alt: 'ShrinkNotes desktop and mobile app screens', caption: 'Production app — desktop & mobile · myshrinknotes.com' },
+    ],
+  },
+  {
+    name: 'Sully.ai',
+    descriptor: 'A superhuman team of AI employees for healthcare.',
+    role: 'Lead Designer',
+    brief:
+      'Designed a modern EHR for a national mental-health services company. Created and maintained the design system and Figma library to support multiple initiatives, and built shared React components for development.',
+    accent: '#3b5bdb',
+    ink: '#eef1ff',
+    theme: 'light',
+    images: [{ src: sullyEhr, alt: 'Sully.ai electronic health record interface', caption: 'EHR design & shared component library' }],
+  },
+  {
+    name: 'Proxi',
+    descriptor: 'Private network intelligence for trusted introductions. Pure signal, no noise.',
+    role: 'Designer & Product Consultant',
+    brief:
+      'Asked to clarify the product definition, define the MVP, and design new AI-powered features to create introductions, brands, and overviews within the app.',
+    accent: '#26242b',
+    ink: '#f2f0f5',
+    theme: 'dark',
+    images: [
+      { src: proxiExploration, alt: 'Proxi product exploration, building blocks and MVP flow' },
+      { src: proxiInsights, alt: 'Proxi key insights and AI relationship prompt prototyping' },
+      { src: proxiExecution, alt: 'Proxi execution — designed app screens with and without AI' },
+    ],
+  },
+  {
+    name: 'PeerLoop',
+    descriptor: 'A social-network-based, one-on-one learning platform.',
+    role: 'Lead Designer',
+    brief:
+      'Asked to clarify the product concept, define the MVP, create a design system, and design the end-to-end app experience.',
+    accent: '#2e3a4b',
+    ink: '#e9eef5',
+    theme: 'dark',
+    images: [{ src: peerloopScreens, alt: 'PeerLoop learning platform screens', caption: 'Course discovery, peer teaching & reviews' }],
+  },
+  {
+    name: 'Lady Bird',
+    descriptor: 'Drinks designed for living well.',
+    role: 'Web developer',
+    brief:
+      'Webflow development and make.com automation for a better-for-you soda brand — drinkladybird.com.',
+    accent: '#16483c',
+    ink: '#e8f2ee',
+    theme: 'dark',
+    images: [{ src: ladybirdSite, alt: 'Lady Bird soda Webflow site, desktop and mobile', caption: 'drinkladybird.com — Webflow build + automation' }],
+  },
+  {
+    name: 'Retail Electric',
+    descriptor: 'Marketing and onboarding for a new retail electric provider.',
+    role: 'Design Director',
+    brief:
+      'Created the marketing and onboarding flow and prototype for a new retail electric provider — mapping feature sets across multiple third-party APIs and adhering to all applicable Texas state regulations.',
+    accent: '#3f8f56',
+    ink: '#eaf6ee',
+    theme: 'light',
+    images: [
+      { src: electricMapping, alt: 'Feature-set and API mapping for retail electric provider' },
+      { src: electricWireframes, alt: 'Wireframing and prototyping the onboarding user journey' },
+    ],
+  },
+  {
+    name: 'OwnProp',
+    descriptor: 'Tokenizing real-estate assets onto the blockchain.',
+    role: 'Creative Director',
+    brief:
+      'Led the rebranding and design-system creation for a crypto real-estate trading platform — including the symbol, logo system, and 2022 brand guide.',
+    accent: '#091f2d',
+    ink: '#e7f6ef',
+    theme: 'dark',
+    images: [
+      { src: ownpropBrandguide, alt: 'OwnProp brand guide 2022 cover' },
+      { src: ownpropSymbol, alt: 'OwnProp brand symbol' },
+      { src: ownpropSymbolMeaning, alt: 'The meaning of the OwnProp symbol — investor plus properties' },
+      { src: ownpropLogos, alt: 'OwnProp logo lockups and color variations' },
+    ],
+  },
+  {
+    name: 'Bidgely',
+    descriptor: 'Appliance-level energy intelligence for every customer.',
+    role: 'Creative Director',
+    brief:
+      'Established brand guidelines and produced marketing material for both print and web.',
+    accent: '#499ed7',
+    ink: '#eaf4fb',
+    theme: 'dark',
+    images: [{ src: bidgelyMarketing, alt: 'Bidgely marketing collateral and brand system' }],
+  },
+  {
+    name: 'Rex',
+    descriptor: 'A real-estate technology incubator — building for 10 startups at once.',
+    role: 'VP of Product Design / Creative Director',
+    brief:
+      'Oversaw design and product strategy for 10 startups, managing a team of 15 designers and establishing scalable design systems and processes across real estate, insurance, logistics, and fintech.',
+    accent: '#000000',
+    ink: '#f2f2f2',
+    theme: 'dark',
+    images: [
+      { src: ownpropTokenizing, alt: 'OwnProp fractional-ownership app flow', caption: 'OwnProp — fractional real-estate investing' },
+      { src: ownpropScreens, alt: 'OwnProp transaction and portfolio screens' },
+      { src: investableInsights, alt: 'Property data-intelligence platform screens', caption: 'Investable — property insights & goals' },
+      { src: propertyGoals, alt: 'Property management app — data consolidation and goals' },
+      { src: payupCards, alt: 'PayUp business banking cards and cash-flow screens', caption: 'PayUp — flexible payouts for businesses' },
+      { src: payupTrack, alt: 'PayUp money tracking and card management' },
+      { src: rexWeb, alt: 'Rex portfolio marketing sites — Comps, insurance, fractional real estate' },
+    ],
+  },
+  {
+    name: 'Sovereign Goods',
+    descriptor: 'Apparel for the sovereign individual. There is no 2nd best.',
+    role: 'Designer, photographer & web developer',
+    brief:
+      'Created a new brand logo, brand assets, social media, and apparel design — plus product photography and a Shopify + Etsy storefront with integration. sovereigngoods.shop',
+    accent: '#6b3511',
+    ink: '#f6efe6',
+    theme: 'dark',
+    images: [
+      { src: sovereignLandscape, alt: 'Sovereign Goods logo over a Big Bend landscape' },
+      { src: sovereignBranding, alt: 'Sovereign Goods Co. wordmark and branding' },
+      { src: sovereignGiddyup, alt: 'Take the ride — Giddy Up brand graphic' },
+      { src: sovereignSocial1, alt: 'Sovereign Goods social media and product photography' },
+      { src: sovereignSocial2, alt: 'Sovereign Goods hats — product photography' },
+      { src: sovereignShopify, alt: 'Sovereign Goods Shopify and Etsy storefront', caption: 'Shopify & Etsy design and integration' },
+    ],
+  },
+];
+---
+
+<Base
+  title="Portfolio — Matt McCloskey"
+  description="Recent product, design, and brand work by Matt McCloskey — ShrinkNotes, Sully.ai, Proxi, OwnProp, Rex, Sovereign Goods, and more."
+>
+  <div class="scroll-progress" data-progress aria-hidden="true"></div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="pf-hero">
+    <div class="pf-hero__bg" aria-hidden="true"></div>
+    <div class="container pf-hero__inner">
+      <p class="eyebrow pf-hero__eyebrow" data-reveal>Matt McCloskey — Portfolio 2026</p>
+      <h1 class="pf-hero__title" data-reveal style="--reveal-delay:80ms">Recent&nbsp;Work</h1>
+      <p class="pf-hero__lede" data-reveal style="--reveal-delay:160ms">
+        A decade-plus of products, brands, and interfaces — from AI-powered defense
+        tools to encrypted healthcare software to a Bitcoin apparel label. Scroll
+        through, or take the whole thing with you.
+      </p>
+      <div class="pf-hero__actions" data-reveal style="--reveal-delay:240ms">
+        <a class="btn btn--on-dark" href={downloads.portfolio} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"
+            ><path
+              d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path></svg
+          >
+          Download PDF
+        </a>
+        <a class="btn btn--ghost btn--ghost-on-dark" href="#work-start">Start scrolling ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="work-start"></div>
+
+  {
+    projects.map((p, i) => (
+      <PortfolioProject
+        index={i + 1}
+        name={p.name}
+        descriptor={p.descriptor}
+        role={p.role}
+        brief={p.brief}
+        accent={p.accent}
+        ink={p.ink}
+        theme={p.theme}
+        images={p.images}
+      />
+    ))
+  }
+
+  <!-- ===================== OUTRO ===================== -->
+  <section class="pf-outro">
+    <div class="container pf-outro__inner" data-reveal>
+      <p class="eyebrow" style="color: var(--blue)">Thank you</p>
+      <h2 class="pf-outro__title">Let’s build the next one.</h2>
+      <p class="pf-outro__sub">
+        Want the polished PDF, or to talk about a project? Both are one tap away.
+      </p>
+      <div class="pf-outro__actions">
+        <a class="btn btn--blue" href={downloads.portfolio} target="_blank" rel="noopener">Download portfolio (PDF)</a>
+        <a class="btn btn--on-dark" href="mailto:mattmccloskey@gmail.com">Get in touch</a>
+        <a class="btn btn--ghost btn--ghost-on-dark" href="/">Back home</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Scroll progress bar */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: linear-gradient(90deg, var(--blue), var(--blue-600));
+    z-index: 150;
+    will-change: transform;
+  }
+
+  /* Hero */
+  .pf-hero {
+    position: relative;
+    background: var(--ink);
+    color: #fff;
+    overflow: hidden;
+    padding-block: clamp(4rem, 12vw, 9rem);
+  }
+  .pf-hero__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(55% 60% at 78% 0%, rgba(73, 158, 215, 0.4), transparent 60%),
+      radial-gradient(45% 60% at 5% 100%, rgba(73, 158, 215, 0.18), transparent 60%);
+    z-index: 0;
+  }
+  .pf-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 60ch;
+  }
+  .pf-hero__eyebrow {
+    color: var(--blue);
+  }
+  .pf-hero__title {
+    font-size: clamp(3.4rem, 12vw, 8rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 0.92;
+    margin-block: 1rem 1.4rem;
+  }
+  .pf-hero__lede {
+    font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+    line-height: 1.6;
+    color: #b9c3cd;
+    max-width: 52ch;
+  }
+  .pf-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2.2rem;
+  }
+  .btn--ghost-on-dark {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+  .btn--ghost-on-dark:hover {
+    border-color: #fff;
+  }
+
+  /* Outro */
+  .pf-outro {
+    background: var(--ink);
+    color: #fff;
+    text-align: center;
+    padding-block: clamp(4rem, 9vw, 7rem);
+  }
+  .pf-outro__inner {
+    max-width: 56ch;
+  }
+  .pf-outro__title {
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-block: 0.7rem 0.9rem;
+  }
+  .pf-outro__sub {
+    color: #a9b4bf;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-inline: auto;
+  }
+  .pf-outro__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+</style>
+
+<script>
+  // Scroll progress indicator
+  const bar = document.querySelector<HTMLElement>('[data-progress]');
+  if (bar) {
+    const update = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const p = max > 0 ? h.scrollTop / max : 0;
+      bar.style.transform = `scaleX(${p})`;
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+  }
+</script>

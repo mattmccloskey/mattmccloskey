@@ -1,0 +1,236 @@
+---
+import type { Project } from '../data/projects';
+import SocialLinks from './SocialLinks.astro';
+interface Props {
+  project: Project;
+  index: number;
+}
+const { project, index } = Astro.props;
+const isLink = Boolean(project.url);
+---
+
+<article
+  class:list={['pcard', { 'pcard--soon': project.status === 'soon', 'pcard--link': isLink }]}
+  style={`--accent:${project.accent}; --accent-ink:${project.ink}; --reveal-delay:${index * 70}ms;`}
+  data-reveal
+>
+  {
+    (project.logo || project.status === 'soon') && (
+      <div class="pcard__head">
+        {project.logo && (
+          <span class:list={['pcard__logo', { 'pcard__logo--round': project.logoRound }]}>
+            <img src={project.logo.src} alt={`${project.name} logo`} loading="lazy" />
+          </span>
+        )}
+        {project.status === 'soon' && <span class="pcard__badge">Coming soon</span>}
+      </div>
+    )
+  }
+
+  <span class="pcard__kicker">{project.kicker}</span>
+  <h3 class="pcard__name">{project.name}</h3>
+  <p class="pcard__tagline">{project.tagline}</p>
+  <p class="pcard__desc">{project.description}</p>
+
+  <div class="pcard__foot">
+    {
+      isLink ? (
+        <a
+          class="pcard__cta pcard__stretch"
+          href={project.url}
+          target="_blank"
+          rel="noopener"
+        >
+          {project.cta}
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      ) : (
+        <span class="pcard__cta">{project.cta}</span>
+      )
+    }
+
+    {
+      project.socials && project.socials.length > 0 && (
+        <div class="pcard__socials">
+          <SocialLinks links={project.socials} size="sm" label={`${project.name} social links`} />
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .pcard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: clamp(1.5rem, 3vw, 2.1rem);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    border: 1px solid var(--line);
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+      transform 0.35s var(--ease),
+      box-shadow 0.35s var(--ease),
+      border-color 0.35s var(--ease);
+  }
+  /* Accent wash that grows on hover */
+  .pcard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, var(--accent) 0%, transparent 62%);
+    opacity: 0.08;
+    z-index: -1;
+    transition: opacity 0.35s var(--ease);
+  }
+  /* Top accent bar */
+  .pcard::after {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease);
+  }
+  .pcard--link:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  }
+  .pcard--link:hover::before {
+    opacity: 0.16;
+  }
+  .pcard--link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .pcard__head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 52px;
+    margin-bottom: 0.15rem;
+  }
+  .pcard__logo {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    flex: 0 0 auto;
+  }
+  .pcard__logo img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  .pcard__logo--round img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 10px rgba(22, 32, 42, 0.18);
+  }
+  .pcard__kicker {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: color-mix(in srgb, var(--accent) 72%, var(--ink));
+  }
+  .pcard__badge {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.62rem;
+    font-weight: 600;
+    padding: 0.28em 0.7em;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    /* push right + sit above the stretched link so it's visible */
+    margin-left: auto;
+    position: relative;
+    z-index: 2;
+  }
+  .pcard__name {
+    font-size: clamp(1.7rem, 3.4vw, 2.15rem);
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  .pcard__tagline {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.02rem;
+    letter-spacing: 0.02em;
+    color: color-mix(in srgb, var(--accent) 65%, var(--ink));
+  }
+  .pcard__desc {
+    color: var(--ink-700);
+    font-size: 0.96rem;
+    line-height: 1.55;
+    margin-top: 0.15rem;
+  }
+
+  .pcard__foot {
+    margin-top: auto;
+    padding-top: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .pcard__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .pcard__cta svg {
+    width: 1.1em;
+    height: 1.1em;
+    transition: transform 0.3s var(--ease);
+  }
+  .pcard--link:hover .pcard__cta svg {
+    transform: translateX(4px);
+  }
+
+  /* Stretched-link: makes the whole card clickable while keeping
+     the social icons independently clickable (they sit above). */
+  .pcard__stretch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .pcard__socials {
+    position: relative;
+    z-index: 2;
+    --social-fg: var(--ink-300);
+    --social-hover: var(--accent);
+  }
+
+  .pcard--soon {
+    background: var(--bg-tint);
+  }
+</style>

@@ -1,0 +1,540 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { projects } from '../data/projects';
+import { personalSocials } from '../data/social';
+import { downloads } from '../data/site';
+import headshot from '../assets/headshot.jpeg';
+
+const stats = [
+  { value: '20+', label: 'Years shipping product' },
+  { value: '5', label: 'SaaS startups founded' },
+  { value: '283', label: 'Podcast episodes' },
+  { value: '12M', label: 'Users reached (CalHEERS)' },
+];
+
+const experience = [
+  {
+    role: 'VP of Product',
+    org: 'Hypergiant',
+    period: '2023 – 2024',
+    note: 'AI-powered geospatial decision tools for NORAD / NORTHCOM and critical infrastructure — with multi-million-dollar business impact.',
+  },
+  {
+    role: 'VP of Product Design',
+    org: 'Rex',
+    period: '2021 – 2023',
+    note: 'Design & product strategy across 10 startups, leading a team of 15 and building scalable design systems.',
+  },
+  {
+    role: 'Technology / Design Director',
+    org: 'Fjord · Accenture',
+    period: '2018 – 2021',
+    note: 'Directed a $6M program for F-35 data viz, California’s ACA enrollment platform (12M residents), and USPS.',
+  },
+  {
+    role: 'Founder',
+    org: 'Osmek',
+    period: '2006 – 2018',
+    note: 'The world’s first SaaS headless CMS — designed, architected, and grown to 2,000+ accounts.',
+  },
+];
+
+const clients = [
+  'NORAD / NORTHCOM',
+  'Lockheed Martin',
+  'USPS',
+  'Shell',
+  'State of California',
+  'IBM',
+  'Cisco',
+];
+---
+
+<Base>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <div class="hero__copy" data-reveal>
+        <p class="eyebrow">Product &amp; Design Leader</p>
+        <h1 class="hero__title">
+          I design, build,<br />and ship<br /><span class="hero__accent"
+            >digital products.</span
+          >
+        </h1>
+        <p class="hero__lede">
+          20+ years driving products from concept to launch — expert in UX design,
+          full-stack development, and rapid prototyping, now accelerated by self-hosted
+          AI agentic systems. VP-level work for defense, healthcare, and critical
+          infrastructure, plus a shelf of things I’ve founded on the side.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--blue" href="/portfolio">
+            View portfolio
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"
+              ><path
+                d="M5 12h14M13 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path></svg
+            >
+          </a>
+          <a class="btn btn--ghost" href="/resume">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"
+              ><path
+                d="M9 12h6m-6 4h6m-6-8h6M6 3h9l4 4v13a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path></svg
+            >
+            Résumé
+          </a>
+        </div>
+        <p class="hero__meta">Austin, TX · <a href="mailto:mattmccloskey@gmail.com">mattmccloskey@gmail.com</a></p>
+      </div>
+
+      <div class="hero__portrait" data-reveal style="--reveal-delay:120ms">
+        <div class="hero__portrait-frame">
+          <Image
+            src={headshot}
+            alt="Matt McCloskey"
+            width={620}
+            widths={[360, 480, 620]}
+            sizes="(max-width: 900px) 60vw, 420px"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero__portrait-blob" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- stats strip -->
+    <div class="container">
+      <ul class="stats" data-reveal>
+        {
+          stats.map((s) => (
+            <li class="stats__item">
+              <span class="stats__value display">{s.value}</span>
+              <span class="stats__label">{s.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== WORK / EXPERIENCE ===================== -->
+  <section class="section work" id="work">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="eyebrow">Selected Experience</p>
+        <h2 class="section-title">Two decades of high-stakes product work</h2>
+        <p class="section-sub">
+          From defense and healthcare to real-estate fintech — leading design and
+          engineering teams to ship software that matters. The full case-study
+          portfolio lives one click away.
+        </p>
+      </header>
+
+      <ol class="timeline">
+        {
+          experience.map((e, i) => (
+            <li class="tl" data-reveal style={`--reveal-delay:${i * 70}ms`}>
+              <div class="tl__head">
+                <h3 class="tl__role">{e.role}</h3>
+                <span class="tl__org">{e.org}</span>
+                <span class="tl__period">{e.period}</span>
+              </div>
+              <p class="tl__note">{e.note}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="work__cta" data-reveal>
+        <a class="btn btn--blue" href="/portfolio">
+          Explore the full portfolio
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"
+            ><path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path></svg
+          >
+        </a>
+        <a class="btn btn--ghost" href={downloads.portfolio} target="_blank" rel="noopener">
+          Download PDF ({downloads.portfolioSize})
+        </a>
+      </div>
+
+      <div class="clients" data-reveal>
+        <span class="clients__label">Work delivered for</span>
+        <ul class="clients__list">
+          {clients.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="eyebrow">Things I’m Building</p>
+        <h2 class="section-title">The independent projects</h2>
+        <p class="section-sub">
+          A software company, an apparel brand, a newsletter, a podcast, and a book of
+          poetry. The stuff I make when no one’s assigning it.
+        </p>
+      </header>
+
+      <div class="projects__grid">
+        {projects.map((p, i) => <ProjectCard project={p} index={i} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="section contact">
+    <div class="container contact__inner" data-reveal>
+      <p class="eyebrow" style="color: var(--blue)">Let’s talk</p>
+      <h2 class="contact__title">
+        Got something worth building?
+      </h2>
+      <p class="contact__sub">
+        I’m taking on select product &amp; design consulting. If you’re shipping
+        something ambitious, I’d love to hear about it.
+      </p>
+      <div class="contact__actions">
+        <a class="btn btn--on-dark" href="mailto:mattmccloskey@gmail.com">
+          mattmccloskey@gmail.com
+        </a>
+        <a class="btn btn--ghost btn--ghost-dark" href="/resume">
+          Résumé
+        </a>
+      </div>
+      <div class="contact__socials">
+        <SocialLinks links={personalSocials} size="md" label="Matt McCloskey on social" />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    padding-top: clamp(2.5rem, 6vw, 5rem);
+    padding-bottom: clamp(2rem, 5vw, 3.5rem);
+    overflow: hidden;
+  }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(60% 55% at 82% 8%, rgba(73, 158, 215, 0.14), transparent 60%),
+      radial-gradient(50% 50% at 0% 100%, rgba(73, 158, 215, 0.08), transparent 65%);
+    z-index: -1;
+  }
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    padding-block: clamp(2rem, 5vw, 4rem);
+  }
+  .hero__copy {
+    min-width: 0;
+  }
+  .hero__title {
+    font-size: clamp(2.5rem, 7.5vw, 5.4rem);
+    overflow-wrap: break-word;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-weight: 700;
+    line-height: 0.98;
+    margin-block: 1rem 1.4rem;
+    color: var(--ink);
+  }
+  .hero__accent {
+    color: var(--blue);
+  }
+  .hero__lede {
+    max-width: 46ch;
+    font-size: 1.08rem;
+    line-height: 1.62;
+    color: var(--ink-700);
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2rem;
+  }
+  .hero__meta {
+    margin-top: 1.4rem;
+    font-size: 0.92rem;
+    color: var(--ink-500);
+  }
+  .hero__meta a {
+    color: var(--blue-600);
+    font-weight: 500;
+  }
+
+  .hero__portrait {
+    position: relative;
+    justify-self: center;
+    width: min(100%, 420px);
+    min-width: 0;
+  }
+  .hero__portrait-frame {
+    position: relative;
+    z-index: 2;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid #fff;
+    box-shadow: var(--shadow-lg);
+  }
+  .hero__portrait-frame :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero__portrait-blob {
+    position: absolute;
+    z-index: 1;
+    inset: -8% -10% auto auto;
+    width: 78%;
+    aspect-ratio: 1;
+    right: -6%;
+    top: -6%;
+    background: var(--blue);
+    border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
+    opacity: 0.9;
+  }
+
+  /* ---------- STATS ---------- */
+  .stats {
+    list-style: none;
+    margin: clamp(1.5rem, 4vw, 3rem) 0 0;
+    padding: clamp(1.4rem, 3vw, 2rem) 0 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .stats__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .stats__value {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    color: var(--blue);
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+  .stats__label {
+    font-size: 0.86rem;
+    color: var(--ink-500);
+    line-height: 1.3;
+  }
+
+  /* ---------- SECTION HEADINGS ---------- */
+  .section-head {
+    max-width: 60ch;
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  }
+  .section-title {
+    font-size: clamp(2rem, 4.6vw, 3.1rem);
+    text-transform: uppercase;
+    letter-spacing: 0.015em;
+    margin-block: 0.7rem 0.9rem;
+    color: var(--ink);
+  }
+  .section-sub {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--ink-700);
+  }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+  .tl {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 0.4rem 2.5rem;
+    align-items: baseline;
+  }
+  .tl:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .tl__head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .tl__role {
+    font-size: 1.4rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .tl__org {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: var(--blue-600);
+  }
+  .tl__period {
+    font-size: 0.82rem;
+    color: var(--ink-300);
+  }
+  .tl__note {
+    color: var(--ink-700);
+    line-height: 1.6;
+  }
+
+  .work__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2.5rem;
+  }
+
+  .clients {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+  .clients__label {
+    display: block;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.72rem;
+    color: var(--ink-300);
+    margin-bottom: 1rem;
+  }
+  .clients__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 2rem;
+  }
+  .clients__list li {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    font-size: clamp(1rem, 2.2vw, 1.35rem);
+    color: var(--ink-300);
+    transition: color 0.2s ease;
+  }
+  .clients__list li:hover {
+    color: var(--ink);
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .projects {
+    background: var(--bg-tint);
+  }
+  .projects__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    align-items: stretch;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact {
+    background: var(--ink);
+    color: #fff;
+    text-align: center;
+  }
+  .contact__inner {
+    max-width: 60ch;
+  }
+  .contact__title {
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-block: 0.8rem 1rem;
+  }
+  .contact__sub {
+    font-size: 1.08rem;
+    line-height: 1.6;
+    color: #a9b4bf;
+    margin-inline: auto;
+  }
+  .contact__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  .btn--ghost-dark {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+  .btn--ghost-dark:hover {
+    border-color: #fff;
+  }
+  .contact__socials {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.75rem;
+    --social-fg: #8b98a5;
+    --social-hover: #fff;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      text-align: left;
+    }
+    .hero__portrait {
+      grid-row: 1;
+      width: min(62%, 320px);
+      justify-self: start;
+    }
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem 1rem;
+    }
+    .tl {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    .projects__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    .projects__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
