@@ -134,6 +134,12 @@ export interface Venture {
 }
 export const ventures: Venture[] = [
   {
+    name: 'Hostmade',
+    role: 'Co-Founder',
+    period: '2025 – Present',
+    blurb: 'SaaS that turns an Airbnb listing into a custom one-page site and narrated promo video on your own domain — tuned so AI answer engines recommend the property.',
+  },
+  {
     name: 'Sovereign Goods',
     role: 'Founder',
     period: '2024 – Present',

@@ -53,6 +53,17 @@ const ogImage = new URL('/og.jpg', Astro.site).href;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:site" content="@mattmccloskey" />
+
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-JFE8YN4YG5"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-JFE8YN4YG5');
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
