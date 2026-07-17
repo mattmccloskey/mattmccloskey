@@ -4,6 +4,7 @@ import shrinknotesLogo from '../assets/logos/shrinknotes.svg';
 import sovereignLogo from '../assets/logos/sovereign-goods.svg';
 import strengthLogo from '../assets/logos/strength-curiosity.svg';
 import shoresLogo from '../assets/logos/shores-of-ignorance.svg';
+import hostmadeLogo from '../assets/logos/hostmade.svg';
 import musicAvatar from '../assets/logos/music-avatar.webp';
 
 export type SocialPlatform = 'instagram' | 'x' | 'github' | 'linkedin';
@@ -71,6 +72,19 @@ export const projects: Project[] = [
     ink: '#241206',
     status: 'live',
     logo: strengthLogo,
+  },
+  {
+    name: 'Hostmade',
+    kicker: 'SaaS · Product',
+    tagline: 'From Airbnb listing to custom site — in one paste.',
+    description:
+      'Paste your Airbnb listing and Hostmade builds a beautiful one-page website and a narrated promo video on your own domain — then tunes it so AI answer engines actually recommend your place.',
+    url: 'https://hostmade.co/',
+    cta: 'Visit Hostmade',
+    accent: '#b8863e',
+    ink: '#f7f4ee',
+    status: 'live',
+    logo: hostmadeLogo,
   },
   {
     name: 'Shores of Ignorance',
