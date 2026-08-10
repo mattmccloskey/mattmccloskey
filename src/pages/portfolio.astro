@@ -5,6 +5,7 @@ import type { PortfolioImage } from '../components/PortfolioProject.astro';
 import { downloads } from '../data/site';
 
 // --- Portfolio imagery (pre-optimized WebP exported from the 2026 PDF) ---
+import hostmadeApp from '../assets/portfolio/hostmade-app.webp';
 import shrinknotesApp from '../assets/portfolio/shrinknotes-app.webp';
 import sullyEhr from '../assets/portfolio/sully-ehr.webp';
 import proxiExploration from '../assets/portfolio/proxi-exploration.webp';
@@ -45,6 +46,19 @@ interface ProjectEntry {
 }
 
 const projects: ProjectEntry[] = [
+  {
+    name: 'Hostmade',
+    descriptor: 'Give your rental a home of its own — a site and a video, from one link.',
+    role: 'Founder, product owner, designer & engineer',
+    brief:
+      'Brand design, architecture, product strategy, and full-stack development. Paste your Airbnb listing and Hostmade builds a beautiful one-page website and a narrated promo video on your own domain — then tunes it so AI answer engines actually recommend your place.',
+    accent: '#b8863e',
+    ink: '#f7f4ee',
+    theme: 'light',
+    images: [
+      { src: hostmadeApp, alt: 'Hostmade — AI site builder and generated rental websites', caption: 'AI site builder + generated rental sites · hostmade.co' },
+    ],
+  },
   {
     name: 'ShrinkNotes',
     descriptor: 'Truly simple, truly private — encrypted psychotherapy practice software.',
