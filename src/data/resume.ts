@@ -155,7 +155,7 @@ export const ventures: Venture[] = [
     name: 'Shores of Ignorance',
     role: 'Co-Host',
     period: '2018 – Present',
-    blurb: 'Weekly podcast on philosophy, religion, and current events. Audio & video engineer — 283 episodes, 300+ hours of content.',
+    blurb: 'Weekly podcast on philosophy, religion, and current events. Audio & video engineer — 291 episodes, 350+ hours of content.',
   },
   {
     name: 'Osmek',

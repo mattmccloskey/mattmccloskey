@@ -89,7 +89,7 @@ export const projects: Project[] = [
   {
     name: 'Shores of Ignorance',
     kicker: 'Podcast · Co-host',
-    tagline: '283 episodes. 300+ hours.',
+    tagline: '291 episodes. 350+ hours.',
     description:
       'A weekly conversation on philosophy, religion, and current events. I co-host and handle the audio and video engineering.',
     url: 'https://shoresofignorance.com',
