@@ -8,4 +8,11 @@ export default defineConfig({
     // Portfolio screenshots are already pre-optimized WebP; keep responsive widths tight.
     responsiveStyles: true,
   },
+  vite: {
+    server: {
+      // Allow previewing the dev server over Tailscale (`astro dev --host`).
+      // Dev-only setting; has no effect on the production build.
+      allowedHosts: ['.taild4472e.ts.net'],
+    },
+  },
 });

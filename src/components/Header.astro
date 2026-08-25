@@ -1,12 +1,13 @@
 ---
+import { booking, bookingPath, bookingNamespace } from '../data/site';
 interface Props {
   variant?: 'light' | 'dark';
 }
 const { variant = 'light' } = Astro.props;
 const links = [
-  { href: '/#work', label: 'Work' },
+  { href: '/#services', label: 'Services' },
   { href: '/portfolio', label: 'Portfolio' },
-  { href: '/#projects', label: 'Projects' },
+  { href: '/#why-me', label: 'Why Me' },
   { href: '/resume', label: 'Resume' },
 ];
 ---
@@ -31,7 +32,7 @@ const links = [
           </a>
         ))
       }
-      <a class="nav__cta" href="mailto:hello@mattmccloskey.com">Get in touch</a>
+      <a class="nav__cta" href={booking} data-cal-namespace={bookingNamespace} data-cal-link={bookingPath} data-cal-config='{"layout":"month_view"}'>Book a call</a>
     </nav>
   </div>
 </header>

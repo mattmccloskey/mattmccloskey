@@ -4,15 +4,26 @@ import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import { projects } from '../data/projects';
+import { moves, engagements } from '../data/services';
 import { personalSocials } from '../data/social';
-import { downloads } from '../data/site';
+import { booking, bookingPath, bookingNamespace, email } from '../data/site';
 import headshot from '../assets/headshot.jpeg';
 
+const mailto = `mailto:${email}?subject=Shipping%20my%20idea`;
+const bookLabel = 'Book a 15-min call';
+// Opens the Cal.com popup; href is the graceful fallback if the embed script fails.
+const calAttrs = {
+  href: booking,
+  'data-cal-namespace': bookingNamespace,
+  'data-cal-link': bookingPath,
+  'data-cal-config': '{"layout":"month_view"}',
+};
+
 const stats = [
-  { value: '20+', label: 'Years shipping product' },
-  { value: '5', label: 'SaaS startups founded' },
-  { value: '291', label: 'Podcast episodes' },
-  { value: '12M', label: 'Users reached (CalHEERS)' },
+  { value: '20+', label: 'Years shipping software' },
+  { value: '5', label: 'SaaS products founded' },
+  { value: '12M', label: 'Users reached' },
+  { value: '100s', label: 'Products delivered' },
 ];
 
 const experience = [
@@ -20,25 +31,25 @@ const experience = [
     role: 'VP of Product',
     org: 'Hypergiant',
     period: '2023 – 2024',
-    note: 'AI-powered geospatial decision tools for NORAD / NORTHCOM and critical infrastructure — with multi-million-dollar business impact.',
+    note: 'Shipped AI-powered geospatial decision tools for NORAD / NORTHCOM and critical infrastructure — where “it mostly works” was never an option.',
   },
   {
     role: 'VP of Product Design',
     org: 'Rex',
     period: '2021 – 2023',
-    note: 'Design & product strategy across 10 startups, leading a team of 15 and building scalable design systems.',
+    note: 'Product & design across 10 startups at once — taking early ideas from concept to launched product, fast.',
   },
   {
     role: 'Technology / Design Director',
     org: 'Fjord · Accenture',
     period: '2018 – 2021',
-    note: 'Directed a $6M program for F-35 data viz, California’s ACA enrollment platform (12M residents), and USPS.',
+    note: 'Directed a $6M F-35 data program and California’s ACA enrollment platform — 12M residents depending on it working.',
   },
   {
     role: 'Founder',
     org: 'Osmek',
     period: '2006 – 2018',
-    note: 'The world’s first SaaS headless CMS — designed, architected, and grown to 2,000+ accounts.',
+    note: 'Built and ran the world’s first SaaS headless CMS end-to-end, to 2,000+ accounts.',
   },
 ];
 
@@ -53,28 +64,29 @@ const clients = [
 ];
 ---
 
-<Base>
+<Base
+  title="Matt McCloskey — Ship your idea to production"
+  description="You built your product to 80–90% with AI. I’m an engineer, designer, and product leader who helps founders stabilize, polish, and ship it into production."
+>
   <!-- ===================== HERO ===================== -->
   <section class="hero">
     <div class="hero__bg" aria-hidden="true"></div>
     <div class="container hero__inner">
       <div class="hero__copy" data-reveal>
-        <p class="eyebrow">Product &amp; Design Leader · Maker</p>
+        <p class="eyebrow">For builders who got it to 90%</p>
         <h1 class="hero__title">
-          I design, build,<br />and ship<br /><span class="hero__accent"
-            >things worth making.</span
-          >
+          Get your idea<br /><span class="hero__accent">over the line.</span>
         </h1>
         <p class="hero__lede">
-          20+ years leading product and design — VP-level work for defense, healthcare,
-          and critical infrastructure, built full-stack and accelerated by self-hosted
-          AI. Off the clock I’m a founder, writer, podcaster, and musician: SaaS
-          products, an apparel brand, essays, 291 podcast episodes, and a book of poems
-          on the way.
+          You used AI to build your dream to 80–90%. The last stretch — nailing the
+          MVP, sharpening the experience, and the auth, data, and deploy — is where
+          momentum dies. I’m an engineer, designer, and product leader with 20+ years
+          shipping software that couldn’t fail. I bring a clear point of view to your
+          idea, stabilize what you’ve built, and get it into production.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--blue" href="/portfolio">
-            View portfolio
+          <a class="btn btn--blue" {...calAttrs}>
+            {bookLabel}
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"
               ><path
                 d="M5 12h14M13 6l6 6-6 6"
@@ -84,19 +96,11 @@ const clients = [
                 stroke-linejoin="round"></path></svg
             >
           </a>
-          <a class="btn btn--ghost" href="/resume">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"
-              ><path
-                d="M9 12h6m-6 4h6m-6-8h6M6 3h9l4 4v13a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path></svg
-            >
-            Resume
-          </a>
+          <a class="btn btn--ghost" href="#services">See how I help</a>
         </div>
-        <p class="hero__meta">Austin, TX · <a href="mailto:hello@mattmccloskey.com">hello@mattmccloskey.com</a></p>
+        <p class="hero__meta">
+          Austin, TX · Prefer email? <a href={mailto}>{email}</a>
+        </p>
       </div>
 
       <div class="hero__portrait" data-reveal style="--reveal-delay:120ms">
@@ -130,16 +134,75 @@ const clients = [
     </div>
   </section>
 
-  <!-- ===================== WORK / EXPERIENCE ===================== -->
-  <section class="section work" id="work">
+  <!-- ===================== SERVICE: the last 20% ===================== -->
+  <section class="section services" id="services">
     <div class="container">
       <header class="section-head" data-reveal>
-        <p class="eyebrow">Selected Experience</p>
-        <h2 class="section-title">Two decades of high-stakes product work</h2>
+        <p class="eyebrow">The Service</p>
+        <h2 class="section-title">I help you ship the last 20%</h2>
         <p class="section-sub">
-          From defense and healthcare to real-estate fintech — leading design and
-          engineering teams to ship software that matters. The full case-study
-          portfolio lives one click away.
+          AI can get you a working prototype. Turning it into a real product — one
+          that’s focused, secure, stable, and something people trust — is a different
+          job. That’s the part I do.
+        </p>
+      </header>
+
+      <div class="moves">
+        {
+          moves.map((m, i) => (
+            <article class="move" data-reveal style={`--reveal-delay:${i * 80}ms`}>
+              <span class="move__step display">{m.step}</span>
+              <h3 class="move__title">{m.title}</h3>
+              <p class="move__blurb">{m.blurb}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WAYS TO WORK TOGETHER ===================== -->
+  <section class="section engagements" id="work-with-me">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="eyebrow">Ways to Work Together</p>
+        <h2 class="section-title">Pick the level of help you need</h2>
+      </header>
+
+      <div class="eng-grid">
+        {
+          engagements.map((e, i) => (
+            <article
+              class:list={['eng', { 'eng--featured': e.featured }]}
+              data-reveal
+              style={`--reveal-delay:${i * 80}ms`}
+            >
+              {e.featured && <span class="eng__tag">Most hands-on</span>}
+              <span class="eng__for">{e.bestFor}</span>
+              <h3 class="eng__name">{e.name}</h3>
+              <p class="eng__blurb">{e.blurb}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="eng__cta" data-reveal>
+        <a class="btn btn--blue" {...calAttrs}>{bookLabel}</a>
+        <a class="btn btn--ghost" href="/portfolio">See my work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WHY ME (track record) ===================== -->
+  <section class="section work" id="why-me">
+    <div class="container">
+      <header class="section-head" data-reveal>
+        <p class="eyebrow">Why Me</p>
+        <h2 class="section-title">Two decades shipping software that couldn’t fail</h2>
+        <p class="section-sub">
+          Long before AI could scaffold an app in an afternoon, I spent 20+ years
+          getting high-stakes software into production — for defense, healthcare, and
+          critical infrastructure. That hard-won rigor is what I bring to your project.
         </p>
       </header>
 
@@ -170,13 +233,11 @@ const clients = [
               stroke-linejoin="round"></path></svg
           >
         </a>
-        <a class="btn btn--ghost" href={downloads.portfolio} target="_blank" rel="noopener">
-          Download PDF ({downloads.portfolioSize})
-        </a>
+        <a class="btn btn--ghost" href="/resume">Read the résumé</a>
       </div>
 
       <div class="clients" data-reveal>
-        <span class="clients__label">Work delivered for</span>
+        <span class="clients__label">Shipped for</span>
         <ul class="clients__list">
           {clients.map((c) => <li>{c}</li>)}
         </ul>
@@ -184,15 +245,15 @@ const clients = [
     </div>
   </section>
 
-  <!-- ===================== PROJECTS ===================== -->
+  <!-- ===================== PROJECTS (I ship my own) ===================== -->
   <section class="section projects" id="projects">
     <div class="container">
       <header class="section-head" data-reveal>
-        <p class="eyebrow">Things I’m Building</p>
-        <h2 class="section-title">The independent projects</h2>
+        <p class="eyebrow">I Ship My Own, Too</p>
+        <h2 class="section-title">I don’t just advise — I build</h2>
         <p class="section-sub">
-          A software company, an apparel brand, a newsletter, a podcast, and a book of
-          poetry. The stuff I make when no one’s assigning it.
+          I’m actively founding and shipping my own products, so I’m in the same
+          trenches you are — not commentating from the sidelines.
         </p>
       </header>
 
@@ -206,20 +267,15 @@ const clients = [
   <section class="section contact">
     <div class="container contact__inner" data-reveal>
       <p class="eyebrow" style="color: var(--blue)">Let’s talk</p>
-      <h2 class="contact__title">
-        Got something worth building?
-      </h2>
+      <h2 class="contact__title">Stuck at 90%?</h2>
       <p class="contact__sub">
-        I’m taking on select product &amp; design consulting. If you’re shipping
-        something ambitious, I’d love to hear about it.
+        If you’ve got an idea that’s almost there and needs a seasoned hand to push it
+        into production, grab a quick 15-minute call — no pitch, just a conversation
+        about what you’re building.
       </p>
       <div class="contact__actions">
-        <a class="btn btn--on-dark" href="mailto:hello@mattmccloskey.com">
-          hello@mattmccloskey.com
-        </a>
-        <a class="btn btn--ghost btn--ghost-dark" href="/resume">
-          Resume
-        </a>
+        <a class="btn btn--on-dark" {...calAttrs}>{bookLabel}</a>
+        <a class="btn btn--ghost btn--ghost-dark" href={mailto}>Email me instead</a>
       </div>
       <div class="contact__socials">
         <SocialLinks links={personalSocials} size="md" label="Matt McCloskey on social" />
@@ -255,7 +311,7 @@ const clients = [
     min-width: 0;
   }
   .hero__title {
-    font-size: clamp(2.5rem, 7.5vw, 5.4rem);
+    font-size: clamp(2.7rem, 8vw, 5.6rem);
     overflow-wrap: break-word;
     text-transform: uppercase;
     letter-spacing: 0.01em;
@@ -268,7 +324,7 @@ const clients = [
     color: var(--blue);
   }
   .hero__lede {
-    max-width: 46ch;
+    max-width: 48ch;
     font-size: 1.08rem;
     line-height: 1.62;
     color: var(--ink-700);
@@ -367,7 +423,108 @@ const clients = [
     color: var(--ink-700);
   }
 
-  /* ---------- TIMELINE ---------- */
+  /* ---------- SERVICE MOVES ---------- */
+  .services {
+    background: var(--bg-tint);
+  }
+  .moves {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+  .move {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.1rem);
+  }
+  .move__step {
+    display: block;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--blue);
+    opacity: 0.4;
+    margin-bottom: 0.7rem;
+  }
+  .move__title {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin-bottom: 0.55rem;
+  }
+  .move__blurb {
+    color: var(--ink-700);
+    line-height: 1.55;
+    font-size: 0.98rem;
+  }
+
+  /* ---------- ENGAGEMENTS ---------- */
+  .eng-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    align-items: stretch;
+  }
+  .eng {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: clamp(1.5rem, 3vw, 2.1rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    transition:
+      transform 0.3s var(--ease),
+      box-shadow 0.3s var(--ease);
+  }
+  .eng--featured {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 1px var(--blue), var(--shadow-md);
+  }
+  .eng__tag {
+    position: absolute;
+    top: -0.75rem;
+    left: clamp(1.5rem, 3vw, 2.1rem);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.66rem;
+    font-weight: 600;
+    padding: 0.3em 0.8em;
+    border-radius: 999px;
+    background: var(--blue);
+    color: #fff;
+  }
+  .eng__for {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--blue-600);
+  }
+  .eng__name {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    line-height: 1.05;
+  }
+  .eng__blurb {
+    color: var(--ink-700);
+    line-height: 1.55;
+    font-size: 0.96rem;
+  }
+  .eng__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: clamp(1.8rem, 3vw, 2.5rem);
+  }
+
+  /* ---------- TIMELINE (why me) ---------- */
   .timeline {
     list-style: none;
     margin: 0;
@@ -530,6 +687,12 @@ const clients = [
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem 1rem;
     }
+    .moves {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .eng-grid {
+      grid-template-columns: 1fr;
+    }
     .tl {
       grid-template-columns: 1fr;
       gap: 0.5rem;
@@ -539,6 +702,7 @@ const clients = [
     }
   }
   @media (max-width: 560px) {
+    .moves,
     .projects__grid {
       grid-template-columns: 1fr;
     }
