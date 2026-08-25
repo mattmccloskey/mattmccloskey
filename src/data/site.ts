@@ -14,4 +14,5 @@ export const downloads = {
 export const booking = 'https://cal.com/matt-mccloskey/15min';
 export const bookingPath = 'matt-mccloskey/15min';
 export const bookingNamespace = '15min'; // Cal.com embed namespace (must match Base.astro init)
+export const bookingConfig = '{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}';
 export const email = 'hello@mattmccloskey.com';

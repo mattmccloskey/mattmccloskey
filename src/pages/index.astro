@@ -6,7 +6,7 @@ import SocialLinks from '../components/SocialLinks.astro';
 import { projects } from '../data/projects';
 import { moves, engagements } from '../data/services';
 import { personalSocials } from '../data/social';
-import { booking, bookingPath, bookingNamespace, email } from '../data/site';
+import { booking, bookingPath, bookingNamespace, bookingConfig, email } from '../data/site';
 import headshot from '../assets/headshot.jpeg';
 
 const mailto = `mailto:${email}?subject=Shipping%20my%20idea`;
@@ -16,7 +16,7 @@ const calAttrs = {
   href: booking,
   'data-cal-namespace': bookingNamespace,
   'data-cal-link': bookingPath,
-  'data-cal-config': '{"layout":"month_view"}',
+  'data-cal-config': bookingConfig,
 };
 
 const stats = [

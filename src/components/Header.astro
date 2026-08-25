@@ -1,5 +1,5 @@
 ---
-import { booking, bookingPath, bookingNamespace } from '../data/site';
+import { booking, bookingPath, bookingNamespace, bookingConfig } from '../data/site';
 interface Props {
   variant?: 'light' | 'dark';
 }
@@ -32,7 +32,7 @@ const links = [
           </a>
         ))
       }
-      <a class="nav__cta" href={booking} data-cal-namespace={bookingNamespace} data-cal-link={bookingPath} data-cal-config='{"layout":"month_view"}'>Book a call</a>
+      <a class="nav__cta" href={booking} data-cal-namespace={bookingNamespace} data-cal-link={bookingPath} data-cal-config={bookingConfig}>Book a call</a>
     </nav>
   </div>
 </header>
