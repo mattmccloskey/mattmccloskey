@@ -623,9 +623,8 @@ const clients = [
     gap: clamp(1rem, 2vw, 1.5rem);
     align-items: stretch;
   }
-  /* Feature the two flagship products as wide cards (7 items → clean 3×3) */
-  .projects__grid > :global(.pcard:nth-child(1)),
-  .projects__grid > :global(.pcard:nth-child(4)) {
+  /* Feature the first card as a wide card (8 items → clean 3×3) */
+  .projects__grid > :global(.pcard:nth-child(1)) {
     grid-column: span 2;
   }
 
@@ -706,8 +705,7 @@ const clients = [
     .projects__grid {
       grid-template-columns: 1fr;
     }
-    .projects__grid > :global(.pcard:nth-child(1)),
-    .projects__grid > :global(.pcard:nth-child(4)) {
+    .projects__grid > :global(.pcard:nth-child(1)) {
       grid-column: auto;
     }
   }

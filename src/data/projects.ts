@@ -5,6 +5,7 @@ import sovereignLogo from '../assets/logos/sovereign-goods.svg';
 import strengthLogo from '../assets/logos/strength-curiosity.svg';
 import shoresLogo from '../assets/logos/shores-of-ignorance.svg';
 import hostmadeLogo from '../assets/logos/hostmade.svg';
+import realtymadeLogo from '../assets/logos/realtymade.svg';
 import musicAvatar from '../assets/logos/music-avatar.webp';
 
 export type SocialPlatform = 'instagram' | 'x' | 'github' | 'linkedin';
@@ -87,9 +88,22 @@ export const projects: Project[] = [
     logo: hostmadeLogo,
   },
   {
+    name: 'RealtyMade',
+    kicker: 'SaaS · Product',
+    tagline: 'From listing to a stunning property site — in minutes.',
+    description:
+      'Paste any Zillow, Realtor.com, or Homes.com listing and RealtyMade builds a beautiful property website with a narrated video tour — in minutes.',
+    url: 'https://realtymade.co',
+    cta: 'Visit RealtyMade',
+    accent: '#23302b',
+    ink: '#f7f4ee',
+    status: 'live',
+    logo: realtymadeLogo,
+  },
+  {
     name: 'Shores of Ignorance',
     kicker: 'Podcast · Co-host',
-    tagline: '291 episodes. 350+ hours.',
+    tagline: '300 episodes. 363 hours.',
     description:
       'A weekly conversation on philosophy, religion, and current events. I co-host and handle the audio and video engineering.',
     url: 'https://shoresofignorance.com',
@@ -105,9 +119,9 @@ export const projects: Project[] = [
   {
     name: 'Music',
     kicker: 'Music · Original',
-    tagline: 'Songs, written and recorded.',
+    tagline: 'Singer-songwriter.',
     description:
-      'Original music I write, play, and record — all gathered in one place to stream.',
+      'Honest songs about pain, hope, and freedom — cutting lyrics and truthful performances from an Austin songwriter.',
     url: 'https://listentomatt.com',
     cta: 'Listen now',
     accent: '#6c4bd8',
