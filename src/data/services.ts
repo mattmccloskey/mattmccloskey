@@ -1,4 +1,4 @@
-// Consulting offer content for the home page.
+// Home-page "how I work" + "how I can help" content.
 
 export interface ServiceMove {
   step: string;
@@ -34,32 +34,30 @@ export const moves: ServiceMove[] = [
   },
 ];
 
-export interface Engagement {
+export interface Mode {
   name: string;
   bestFor: string;
   blurb: string;
-  featured?: boolean;
 }
 
-// Ways to work together.
-export const engagements: Engagement[] = [
+// The ways I plug into a team — employment or engagement.
+export const modes: Mode[] = [
   {
-    name: 'Production Audit',
-    bestFor: 'You want a plan',
+    name: 'Lead',
+    bestFor: 'Direction & delivery',
     blurb:
-      'A focused review of your product, code, and UX — what the MVP really is, where to cut scope, and an honest, prioritized roadmap to launch.',
+      'Product and engineering leadership, full-time or fractional. I set direction, build the team, and own delivery end to end.',
   },
   {
-    name: 'Stabilize & Ship',
-    bestFor: 'You want it done',
+    name: 'Build',
+    bestFor: 'Hands-on in the code',
     blurb:
-      'I take your 80–90% build the rest of the way — hands-on engineering and design until it’s live and holding up in production.',
-    featured: true,
+      'Senior IC work: architecture, full-stack, and AI. I design the system and write the code that ships to production.',
   },
   {
-    name: 'Fractional Product Engineer',
-    bestFor: 'You want a partner',
+    name: 'Advise',
+    bestFor: 'A clear path forward',
     blurb:
-      'Ongoing senior product, design, and engineering help as you grow past launch — a steady hand on the wheel, without a full-time hire.',
+      'Audits, architecture reviews, and an honest, prioritized roadmap — so your team knows exactly what to build and fix.',
   },
 ];

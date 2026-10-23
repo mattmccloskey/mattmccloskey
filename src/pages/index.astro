@@ -4,13 +4,13 @@ import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import { projects } from '../data/projects';
-import { moves, engagements } from '../data/services';
+import { moves, modes } from '../data/services';
 import { personalSocials } from '../data/social';
 import { booking, bookingPath, bookingNamespace, bookingConfig, email } from '../data/site';
 import headshot from '../assets/headshot.jpeg';
 
-const mailto = `mailto:${email}?subject=Shipping%20my%20idea`;
-const bookLabel = 'Book a 15-min call';
+const mailto = `mailto:${email}?subject=Let%27s%20talk`;
+const bookLabel = 'Let’s talk';
 // Opens the Cal.com popup; href is the graceful fallback if the embed script fails.
 const calAttrs = {
   href: booking,
@@ -65,24 +65,25 @@ const clients = [
 ---
 
 <Base
-  title="Matt McCloskey — Ship your idea to production"
-  description="You built your product to 80–90% with AI. I’m an engineer, designer, and product leader who helps founders stabilize, polish, and ship it into production."
+  title="Matt McCloskey — Engineer, Designer & Product Leader"
+  description="Full-stack engineer and product leader with 20+ years shipping software for defense, healthcare, and startups. Hands-on, AI-native, and open to leading, building, or advising."
 >
   <!-- ===================== HERO ===================== -->
   <section class="hero">
     <div class="hero__bg" aria-hidden="true"></div>
     <div class="container hero__inner">
       <div class="hero__copy" data-reveal>
-        <p class="eyebrow">For builders who got it to 90%</p>
+        <p class="eyebrow">Engineer · Designer · Product Leader</p>
         <h1 class="hero__title">
-          Get your idea<br /><span class="hero__accent">over the line.</span>
+          I design, build,<br />and ship<br /><span class="hero__accent"
+            >software that couldn’t fail.</span
+          >
         </h1>
         <p class="hero__lede">
-          You used AI to build your dream to 80–90%. The last stretch — nailing the
-          MVP, sharpening the experience, and the auth, data, and deploy — is where
-          momentum dies. I’m an engineer, designer, and product leader with 20+ years
-          shipping software that couldn’t fail. I bring a clear point of view to your
-          idea, stabilize what you’ve built, and get it into production.
+          Full-stack engineer and product leader with 20+ years shipping software for
+          defense, healthcare, and startups — hands-on with the code, AI-native, and as
+          comfortable leading a team as architecting the stack. Whether you’re hiring or
+          building, I help get hard things into production.
         </p>
         <div class="hero__actions">
           <a class="btn btn--blue" {...calAttrs}>
@@ -96,7 +97,7 @@ const clients = [
                 stroke-linejoin="round"></path></svg
             >
           </a>
-          <a class="btn btn--ghost" href="#services">See how I help</a>
+          <a class="btn btn--ghost" href="/portfolio">See my work</a>
         </div>
         <p class="hero__meta">
           Austin, TX · Prefer email? <a href={mailto}>{email}</a>
@@ -138,12 +139,12 @@ const clients = [
   <section class="section services" id="services">
     <div class="container">
       <header class="section-head" data-reveal>
-        <p class="eyebrow">The Service</p>
-        <h2 class="section-title">I help you ship the last 20%</h2>
+        <p class="eyebrow">How I Work</p>
+        <h2 class="section-title">How I get things into production</h2>
         <p class="section-sub">
-          AI can get you a working prototype. Turning it into a real product — one
-          that’s focused, secure, stable, and something people trust — is a different
-          job. That’s the part I do.
+          AI can scaffold a prototype in an afternoon. Turning it into a real product —
+          one that’s focused, secure, stable, and something people trust — is a
+          different job. This is how I do it.
         </p>
       </header>
 
@@ -165,22 +166,21 @@ const clients = [
   <section class="section engagements" id="work-with-me">
     <div class="container">
       <header class="section-head" data-reveal>
-        <p class="eyebrow">Ways to Work Together</p>
-        <h2 class="section-title">Pick the level of help you need</h2>
+        <p class="eyebrow">How I Can Help</p>
+        <h2 class="section-title">Lead, build, or advise</h2>
+        <p class="section-sub">
+          I plug into a team at whatever level the work needs — a full-time role, a
+          hands-on build, or a focused engagement. Same person, same standards.
+        </p>
       </header>
 
       <div class="eng-grid">
         {
-          engagements.map((e, i) => (
-            <article
-              class:list={['eng', { 'eng--featured': e.featured }]}
-              data-reveal
-              style={`--reveal-delay:${i * 80}ms`}
-            >
-              {e.featured && <span class="eng__tag">Most hands-on</span>}
-              <span class="eng__for">{e.bestFor}</span>
-              <h3 class="eng__name">{e.name}</h3>
-              <p class="eng__blurb">{e.blurb}</p>
+          modes.map((m, i) => (
+            <article class="eng" data-reveal style={`--reveal-delay:${i * 80}ms`}>
+              <span class="eng__for">{m.bestFor}</span>
+              <h3 class="eng__name">{m.name}</h3>
+              <p class="eng__blurb">{m.blurb}</p>
             </article>
           ))
         }
@@ -188,7 +188,7 @@ const clients = [
 
       <div class="eng__cta" data-reveal>
         <a class="btn btn--blue" {...calAttrs}>{bookLabel}</a>
-        <a class="btn btn--ghost" href="/portfolio">See my work</a>
+        <a class="btn btn--ghost" href="/resume">Read the résumé</a>
       </div>
     </div>
   </section>
@@ -250,10 +250,10 @@ const clients = [
     <div class="container">
       <header class="section-head" data-reveal>
         <p class="eyebrow">I Ship My Own, Too</p>
-        <h2 class="section-title">I don’t just advise — I build</h2>
+        <h2 class="section-title">I don’t just talk shop — I build</h2>
         <p class="section-sub">
-          I’m actively founding and shipping my own products, so I’m in the same
-          trenches you are — not commentating from the sidelines.
+          I’m always founding and shipping my own products, so I stay hands-on across
+          the whole stack — not just in the strategy deck.
         </p>
       </header>
 
@@ -266,12 +266,11 @@ const clients = [
   <!-- ===================== CONTACT ===================== -->
   <section class="section contact">
     <div class="container contact__inner" data-reveal>
-      <p class="eyebrow" style="color: var(--blue)">Let’s talk</p>
-      <h2 class="contact__title">Stuck at 90%?</h2>
+      <p class="eyebrow" style="color: var(--blue)">Get in touch</p>
+      <h2 class="contact__title">Hiring, building, or just curious?</h2>
       <p class="contact__sub">
-        If you’ve got an idea that’s almost there and needs a seasoned hand to push it
-        into production, grab a quick 15-minute call — no pitch, just a conversation
-        about what you’re building.
+        Whether you’ve got a role to fill, a product to ship, or just want to compare
+        notes — grab a quick call or drop me a line. I read every message.
       </p>
       <div class="contact__actions">
         <a class="btn btn--on-dark" {...calAttrs}>{bookLabel}</a>
